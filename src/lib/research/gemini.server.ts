@@ -73,9 +73,9 @@ function mapProviderError(e: unknown): ResearchError {
 }
 
 export async function runResearch(input: ResearchInput): Promise<ResearchResult> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = process.env["GEMINI_API_KEY"];
   if (!apiKey) throw new ResearchError("missing_key", 503, "missing_key");
-  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+  const model = process.env["GEMINI_MODEL"] || "gemini-2.5-flash";
   const ai = new GoogleGenAI({ apiKey });
   const signal = AbortSignal.timeout(TOTAL_TIMEOUT_MS);
 
