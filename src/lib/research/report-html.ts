@@ -37,7 +37,7 @@ export function buildReportHtml(r: ResearchResult): string {
   <p><b>Still assumed:</b></p><ul>${p.assumptions.map((a) => `<li>${esc(a)}</li>`).join("") || "<li><em>None listed</em></li>"}</ul>
   <p><b>Contact route:</b> ${unk(p.contactRoute.type)}: ${unk(p.contactRoute.value)}${p.contactRoute.sourceUrl ? ` (source: ${link(p.contactRoute.sourceUrl, "link")})` : ""}<br><span class="muted">${esc(p.contactRoute.verificationLimit)}</span></p>
   <p><b>Sample idea:</b> ${unk(p.sampleIdea)}</p>
-  <p><b>Sources (from Google Search grounding):</b></p>
+  <p><b>Sources (web search citations):</b></p>
   <ol>${p.sources.map((s) => `<li>${link(s.url, s.title || s.url)}${s.supports ? ` — <span class="muted">supports: “${esc(s.supports)}”</span>` : ""}</li>`).join("")}</ol>
 </section>`).join("");
 
@@ -69,7 +69,7 @@ a{color:#7a3b12}.note{background:#fff4d6;border:1px solid #e6cf8f;padding:10px 1
 </style></head><body>
 <h1>Research shortlist</h1>
 <p class="muted">Project → Prospects · Researched ${esc(r.researchedAt)} · Model ${esc(r.model)}</p>
-<p class="note">This is a research shortlist, not proof of demand or guaranteed contactability. Sources come from Google Search grounding; everything else is the model's summary or hypothesis.</p>
+<p class="note">This is a research shortlist, not proof of demand or guaranteed contactability. Sources are web search citations; everything else is the model's summary or hypothesis.</p>
 <h2>Your capability and scope (your claims)</h2>
 <p><b>Project/service:</b> ${esc(input.project)}</p><p><b>Proof/demo (not inspected):</b> ${esc(input.proof)}</p>
 <p><b>Deliverable:</b> ${esc(input.deliverable)}</p><p><b>Limitations:</b> ${esc(input.limitations)}</p>
@@ -82,7 +82,7 @@ a{color:#7a3b12}.note{background:#fff4d6;border:1px solid #e6cf8f;padding:10px 1
 <h2>Recommended first action</h2>
 <p><b>${esc(fa.prospectId ? byId.get(fa.prospectId)?.company ?? "" : "Discovery")}</b> — ${esc(fa.action)}</p><p>${esc(fa.reason)}</p>
 <h2>Limitations</h2><ul>${report.limitations.map((l) => `<li>${esc(l)}</li>`).join("")}</ul>
-${r.searchQueries.length ? `<p class="muted">Google Search queries used: ${r.searchQueries.map(esc).join(" · ")}</p>` : ""}
+${r.searchQueries.length ? `<p class="muted">Web searches run: ${r.searchQueries.map(esc).join(" · ")}</p>` : ""}
 <h2>Follow-up tracker</h2>
 <table><thead><tr><th>Prospect</th><th>Contacted Date</th><th>Channel</th><th>Sample Sent</th><th>Actual Reply</th><th>Outcome Class</th><th>Next Action</th></tr></thead><tbody>${tracker}</tbody></table>
 </body></html>`;

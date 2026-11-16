@@ -29,7 +29,7 @@ export const Route = createFileRoute("/api/research")({
         hits.set(ip, recent);
         inFlight.add(ip);
         try {
-          const { runResearch } = await import("@/lib/research/gemini.server");
+          const { runResearch } = await import("@/lib/research/research.server");
           const result = await runResearch(parsed.data);
           return json({ result });
         } catch (e: any) {

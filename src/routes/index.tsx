@@ -114,10 +114,10 @@ function ErrorBox({ error }: { error: Err }) {
   if (error.code === "missing_key") {
     return (
       <div className="mt-6 rounded-lg border border-destructive/40 bg-card p-5" role="alert">
-        <h2 className="text-xl font-bold">Setup needed: Gemini API key</h2>
+        <h2 className="text-xl font-bold">Setup needed: OpenAI API key</h2>
         <ol className="mt-2 list-decimal space-y-1 pl-5 text-sm">
-          <li>Create a key at Google AI Studio (aistudio.google.com/apikey).</li>
-          <li>Add it as a secret named <code>GEMINI_API_KEY</code>. Optional: <code>GEMINI_MODEL</code> (default gemini-2.5-flash).</li>
+          <li>Create a key at platform.openai.com/api-keys.</li>
+          <li>Add it as a secret named <code>OPENAI_API_KEY</code>. Optional: <code>OPENAI_MODEL</code> (default gpt-5-mini).</li>
           <li>Press “Find relevant prospects” again — your answers are kept.</li>
         </ol>
       </div>
@@ -161,7 +161,7 @@ function Results({ r, onDownload }: { r: ResearchResult; onDownload: () => void 
               {p.assumptions.length > 0 && <div><b>Still assumed:</b><ul className="list-disc pl-5">{p.assumptions.map((a, j) => <li key={j}>{a}</li>)}</ul></div>}
               <p><b>Contact:</b> {p.contactRoute.type ?? <Unknown />}: {p.contactRoute.value ?? <Unknown />} {p.contactRoute.sourceUrl && <SafeLink url={p.contactRoute.sourceUrl} label="(source)" />}<br /><span className="text-muted-foreground">{p.contactRoute.verificationLimit}</span></p>
               <p><b>Sample idea:</b> {p.sampleIdea ?? <Unknown />}</p>
-              <div><b>Sources</b> <Tag>Google Search</Tag>
+              <div><b>Sources</b> <Tag>web search</Tag>
                 <ol className="list-decimal pl-5">{p.sources.map((s, j) => <li key={j}><SafeLink url={s.url} label={s.title ?? s.url} />{s.supports && <span className="text-muted-foreground"> — supports: “{s.supports}”</span>}</li>)}</ol>
               </div>
             </article>
